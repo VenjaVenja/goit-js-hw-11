@@ -35,11 +35,9 @@ function onSearch(event) {
     }
 
     imagesApiFetch.resetPage();
-
     imagesApiFetch.fetchPixabayImages()
         .then(appendgalleryMarkup);
 
-   
 };
 
 function onLoadMore() {
