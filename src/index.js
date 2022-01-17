@@ -34,7 +34,15 @@ function onSearch(event) {
 
     imagesApiFetch.resetPage();
     imagesApiFetch.fetchPixabayImages()
-        .then(appendgalleryMarkup);
+        .then(response => {
+        if (response.totalHits === 0) {
+            Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+        }
+        if (response.totalHits > 0) {
+            Notify.success(`Hooray! We found ${response.totalHits} images.`);
+        };
+    })
+        .then(appendgalleryMarkup());
 
 };
 
@@ -50,18 +58,10 @@ function onLoadMore() {
         .then(scroll);
 };
 
-function appendgalleryMarkup({ hits }) {
-    
-        refs.galleryWrap.insertAdjacentHTML('beforeend', galleryTpl(hits));
-        lightnBox();
+function appendgalleryMarkup() {
+    refs.galleryWrap.insertAdjacentHTML('beforeend', galleryTpl(hits));
+    lightnBox();
 
-
-    // refs.galleryWrap.insertAdjacentHTML('beforeend', galleryTpl(hits));
-    // lightnBox();
-    
-    if (hits < 40) {
-        Notify.warning("We're sorry, but you've reached the end of search results.");
-    }
 }
 
 // ====================================lightnBox========================================
