@@ -28,8 +28,6 @@ const imagesApiFetch = new ImagesApiFetch();
 refs.searchForm.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 
-console.log(loadMoreBtn)
-
 // ====================================onSearch========================================
 
 function onSearch(event) {
