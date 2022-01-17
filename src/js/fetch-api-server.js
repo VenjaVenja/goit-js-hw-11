@@ -10,20 +10,12 @@ export default class ImagesApiFetch {
         this.page = 1;
     }
     
-    fetchPixabayImages() {
-        // console.log(this);
+    async fetchPixabayImages() {
         const url = `${BASE_URL}?key=${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`
 
-        return fetch(url)
-            .then(response => response.json())
-            .then(this.incrementPage());
-        
-            // .then(data => {
-            //     console.log(data)
-            //     this.incrementPage();
-            //     // console.log(data.totalHits);
-            //     return data;
-            // });
+        const response = await axios.get(url);
+        const data = await (response.data);
+        return data;
     }
 
     incrementPage() {

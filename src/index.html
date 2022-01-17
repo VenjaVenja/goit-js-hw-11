@@ -12,22 +12,9 @@
     />
   </head>
   <body>
-    <form class="search-form" id="search-form">
-      <input 
-      type="text" 
-      name="searchQuery" 
-      autocomplete="off" 
-      placeholder="Search images..." />
-
-      <button type="submit">Search</button>
-      
-    </form>
-
-    <div class="gallery">
-      <!-- Карточки изображений -->
-    </div>
-
-    <button type="button" class="load-more">Load more</button>
+    <include src="./partials/search-form.html"></include>
+    <include src="./partials/gallery.html"></include>
+    <include src="./partials/load-more-btn.html"></include>
 
     
     <!-- Так добавляются фрагменты в главные HTML-файлы страниц. -->
