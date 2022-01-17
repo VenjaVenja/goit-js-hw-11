@@ -30,11 +30,6 @@ loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 
 console.log(loadMoreBtn)
 
-loadMoreBtn.show();
-// loadMoreBtn.enable();
-loadMoreBtn.disable();
-loadMoreBtn.enable();
-// loadMoreBtn.hide();
 // ====================================onSearch========================================
 
 function onSearch(event) {
@@ -49,8 +44,8 @@ function onSearch(event) {
         return;
     }
 
-    // loadMoreBtn.show();
-    // loadMoreBtn.disable();
+    loadMoreBtn.show();
+    loadMoreBtn.disable();
     // loadMoreBtn.enable();
     imagesApiFetch.resetPage();
     imagesApiFetch.fetchPixabayImages().then(data => {
@@ -62,13 +57,10 @@ function onSearch(event) {
                 Notify.success(`Hooray! We found ${data.totalHits} images.`);
 
                 appendgalleryMarkup(data.hits);
-
-                // loadMoreBtn.enable();
+                loadMoreBtn.enable();
         };
-        
         });
     
-
 };
 
 // ====================================onLoadMore========================================
@@ -82,7 +74,8 @@ function onLoadMore() {
         
             if (data.hits.length < 40) {
                 Notify.warning("We're sorry, but you've reached the end of search results.");
-                refs.messageEl.classList.remove('is-hidden');   
+                refs.messageEl.classList.remove('is-hidden');
+                loadMoreBtn.hide()
             }
         })
 };

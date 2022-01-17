@@ -14,7 +14,7 @@ getRefs(selector){
 
 enable(){
     this.refs.button.disabled = false;
-    this.refs.label.texContent = 'Load more';
+    this.refs.label.textContent = 'Load more';
 }
 
 disable(){
@@ -31,4 +31,3 @@ hide(){
     }
     
 }
-
