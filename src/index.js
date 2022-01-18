@@ -44,13 +44,13 @@ async function onSearch(event) {
     loadMoreBtn.disable();
     imagesApiFetch.resetPage();
 
-    const data = await imagesApiFetch.fetchPixabayImages();
-
-    if (data.totalHits === 0) {
-        Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-    }
-
     try {
+        const data = await imagesApiFetch.fetchPixabayImages();
+
+        if (data.totalHits === 0) {
+        Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+        }
+
         if (data.totalHits > 0) {
             Notify.success(`Hooray! We found ${data.totalHits} images.`);
 
@@ -68,9 +68,9 @@ async function onSearch(event) {
 async function onLoadMore() {
 
     imagesApiFetch.incrementPage();
-    const data = await imagesApiFetch.fetchPixabayImages();
-
+    
     try {
+        const data = await imagesApiFetch.fetchPixabayImages();
         appendgalleryMarkup(data.hits);
         scroll()
         
@@ -79,7 +79,7 @@ async function onLoadMore() {
             refs.messageEl.classList.remove('is-hidden');
             loadMoreBtn.hide()
         };
-        
+
     } catch (error) {
         console.log(error)
     }
